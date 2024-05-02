@@ -1,3 +1,3 @@
-# roisassignmets.github.io
+# assignmets
 
 This repository is for the assignments 
