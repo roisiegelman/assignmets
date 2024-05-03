@@ -1,9 +1,10 @@
+
 import random
 
 def generate_random_number():
-    return random.randint(1, 20)
+    return int(random.randint(1,20))
 
-def get_user_guess():
+def welcome_to_game():
     return input("Guess the number between 1 and 20 or 'x' to exit, 'n' for a new game or 's' to show the number ")
 
 def play_game():
@@ -11,30 +12,30 @@ def play_game():
     play = 0
 
     while True:
-        user_input = get_user_guess()
+        my_guess = welcome_to_game()
 
-        if user_input == 'x':
+        if my_guess == 'x':
             print("Exiting the program.")
             return False
-        elif user_input == 'n':
+        elif my_guess == 'n':
             print("Starting a new game.")
             return True
-        elif user_input == 's':
+        elif my_guess == 's':
             print("The hidden number is:", random_number)
             continue
 
         try:
-            user_guess = int(user_input)
+            my_guess = int(my_guess)
         except ValueError:
             print("Invalid input. Please enter a number between 1 and 20.")
             continue
 
         play += 1
 
-        if user_guess == random_number:
-            print("congrats! Congrats! The number was {}. You needed {} guesses to find the correct number .".format(random_number, play))
+        if my_guess == random_number:
+            print("congrats!  The number was {}. You needed {} guesses to find the correct number .".format(random_number, play))
             return True
-        elif user_guess < random_number:
+        elif my_guess < random_number:
             print("Too small! Try again.")
         else:
             print("Too big! Try again.")
