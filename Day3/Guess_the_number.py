@@ -1,18 +1,20 @@
 import random
 
-
+# Generate a random number between 1-20
 def generate_random_number(): 
  return int(random.randint(1,20))
 
-def other_options():
+#Get a message for the otions of the game
+def player_options():
     return input("Guess the number between 1 and 20, or press 'x' to exit, 'n' for a new game, 's' to show the number): ")
 
+# play the game
 def play_game():
     number_to_guess = generate_random_number()
     play = 0 
     
     while True:
-     my_input = other_options()
+     my_input = player_options()
         
      if my_input == 'x':
             print("Exiting the program.")
@@ -34,14 +36,14 @@ def play_game():
      
     
      if my_guess == number_to_guess: 
-          print("Congratulations! You guessed the number {} correctly in {} guesses.".format(number_to_guess, play))
+          print("Congrats! You guessed the number {} correctly in {} guesses.".format(number_to_guess, play))
           return True
         
      elif my_guess < number_to_guess:
-          print("Too small! Try again.")
+          print("Guess again, your number is too small!.")
         
      elif my_guess > number_to_guess:
-          print("Too big! Try again.")
+          print("Guess again, your number is too large!.")
 
 def main():
     print("Welcome to the Number Guessing Game!")
@@ -49,15 +51,11 @@ def main():
     while True:
         if not play_game():
             break
-
-        play_again = input("\nDo you want to play again? (yes/no): ").lower()
-        while play_again not in ['yes', 'no']:
-            print("Invalid input. Please enter 'yes' or 'no'.")
-            play_again = input("Do you want to play again? (yes/no): ").lower()
+        
+        play_again = input("Do you want to play again? (yes/no): ").lower()
         if play_again == 'no':
             print("Exiting the program.")
             break
 
-if __name__ == "__main__":
-    main()
+main()
   
