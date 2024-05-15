@@ -1,12 +1,9 @@
 # Allows you to perform various file operations such as opening, reading, writing, and deleting files
 import os
 
-# Set directory
-DEFAULT_DIRECTORY = "C:/Users/roisi/Course/assignmets/Day4"
-
-def count_file_stats(filepath):
+def count_file_stats(filename):
     try:
-        with open(filepath, 'r') as file:
+        with open(filename, 'r') as file:
             text = file.read()
             char_count = len(text)
             line_count = text.count('\n') + 1  # Counting '\n' occurrences to get the number of lines
@@ -19,8 +16,7 @@ def count_file_stats(filepath):
 
 def main():
     filename = input("Enter the filename: ")
-    filepath = os.path.join(DEFAULT_DIRECTORY, filename)
-    count_file_stats(filepath)
+    count_file_stats(filename)
 
 if __name__ == "__main__":
-    main()        
+    main()
