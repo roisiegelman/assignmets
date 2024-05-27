@@ -1,11 +1,10 @@
 import pandas as pd
 from lifelines import CoxPHFitter, KaplanMeierFitter
 from lifelines.statistics import multivariate_logrank_test
-import matplotlib.pyplot as plt
-from matplotlib.ticker import MaxNLocator
+import plotly.graph_objects as go
 
 # Correct Windows file path using raw string
-file_path = "Overall_survival.xlsx"
+file_path = r"Overall_survival.xlsx"
 
 # Read the data
 survdat = pd.read_excel(file_path, sheet_name="LumA_NSD1_TCGA")
@@ -25,25 +24,38 @@ cph.fit(survdat[['Time.months', 'censor', 'Group']], duration_col='Time.months',
 results = multivariate_logrank_test(survdat['Time.months'], survdat['Group'], survdat['censor'])
 p_value = results.p_value
 
-# Plotting the survival curves using Kaplan-Meier estimator
+# Plotting the survival curves using Kaplan-Meier estimator with Plotly
 kmf = KaplanMeierFitter()
 
-ax = plt.subplot(111)
+# Define custom colors for the groups
+colors = ['blue', 'red']
 
-# Plot by group
-for name, grouped_df in survdat.groupby('Group'):
+# Create the Plotly figure
+fig = go.Figure()
+
+# Plot by group using observed=True in groupby to handle categorical data efficiently
+for i, (name, grouped_df) in enumerate(survdat.groupby('Group', observed=True)):
     kmf.fit(grouped_df["Time.months"], event_observed=grouped_df["censor"], label=str(name))
-    kmf.plot_survival_function(ax=ax, ci_show=False)
+    km_curve = kmf.survival_function_
 
-ax.set_xlim(0, 200)
-ax.xaxis.set_major_locator(MaxNLocator(integer=True))
-ax.set_ylim(0, 1)
-ax.set_xlabel("Time (Months)")
-ax.set_ylabel("Survival Probability")
+    fig.add_trace(go.Scatter(
+        x=km_curve.index,
+        y=km_curve[name],
+        mode='lines',
+        name=str(name),
+        line=dict(color=colors[i])
+    ))
 
-# Add legend with p-value
-plt.legend(title="Log-Rank p-Value={:.3f}".format(p_value), loc="upper right")
+# Customize the layout
+fig.update_layout(
+    xaxis_title="Time (Months)",
+    yaxis_title="Survival Probability",
+    title=dict(text="Survival Analysis", x=0.5),
+    legend_title_text=f"Log-Rank p-value={p_value:.3f}",
+    xaxis=dict(tickmode='linear', dtick=20),
+    yaxis=dict(range=[0, 1]),
+    template='plotly_white'
+)
 
-# Customizing the plot aesthetics
-ax.title.set_text('Survival Analysis')
-plt.show()
+# Show the plot
+fig.show()
