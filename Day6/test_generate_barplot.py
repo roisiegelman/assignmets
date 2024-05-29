@@ -1,18 +1,12 @@
 import pytest
 import os
-import warnings
-from generate_barplot import generate_barplot_from_excel
+from generate_barplot import generate_barplot
+import matplotlib
 
-@pytest.fixture
-def setup_excel_file():
-    excel_file = 'Roi_MARSseq.xlsx'
-    yield excel_file
-    # Cleanup if necessary
-    if os.path.exists('differentially_expressed_genes.png'):
-        os.remove('differentially_expressed_genes.png')
+def test_generate_barplot():
+    # Use the 'Agg' backend to prevent plot display during tests
+    matplotlib.use('Agg')
 
-@pytest.mark.filterwarnings("ignore:.*datetime.datetime.utcnow.*:DeprecationWarning")
-def test_generate_barplot(setup_excel_file):
-    excel_file = setup_excel_file
-    generate_barplot_from_excel(excel_file)
-    assert os.path.exists('differentially_expressed_genes.png')
+    # Ensure the plot is generated without user interaction
+    generate_barplot()
+    assert os.path.exists("top_genes_barplot.png")
