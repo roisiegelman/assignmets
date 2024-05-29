@@ -26,7 +26,7 @@ def generate_barplot(file_path="Roi_MARSseq.xlsx"):
 
     plt.xlabel('log2 Fold Change')
     plt.ylabel('Gene')
-    plt.title('Top 10 Differentially Expressed Genes in WT_PyMT and NSD1_KO')
+    plt.title('Top 10 Differentially Expressed Genes')
     plt.legend()
 
     # Save the plot
