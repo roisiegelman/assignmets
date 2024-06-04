@@ -14,4 +14,5 @@ Print CSV log:
 
 **print_csv_log:** Reads the CSV log file and prints its content.
 
-
+You can run the script with any number of items and show the search log by using the command line and giving it suitable arguments. As an example:
+  _python ncbi_protein.py --email roi.siegelman@weizmann.ac.il --term nsd1 --max_items 7 --out_dir proteins --log_file search_log.csv_
