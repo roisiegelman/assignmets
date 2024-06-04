@@ -1,4 +1,4 @@
-ncbi_protein.py: Search for "nsd1" in the NCBI protein database with this script. It will download up to the number of protein sequences specified, save each sequence in its own file, and keepa log of the search information in a CSV file.
+**ncbi_protein.py:** Search for "nsd1" in the NCBI protein database with this script. It will download up to the number of protein sequences specified, save each sequence in its own file, and keepa log of the search information in a CSV file.
 
 the script contains the following functions
 
