@@ -45,9 +45,11 @@ Run the script from the command line, specifying the path to your FASTA file and
 * `--longest`: (Optional) Perform analysis to find the longest repeated sub-sequence.
 * `--palindrome`: (Optional) Perform analysis to find the longest palindromic sub-sequence.
 
-   * Testing the script:
+### Example Output:
    ```python
-pytest test_data_analysis.py
+Sequence loaded successfully.
+Longest repeated sub-sequence: ACACCACAGGCTGA
+Longest palindromic sub-sequence: GTCAATG
 ```
 
 
