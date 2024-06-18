@@ -12,19 +12,33 @@ This program analyzes a DNA sequence from a file in FASTA format. It provides tw
 **1. Python 3.x**
 
 **2. Biopython library:** This is used for reading and parsing the FASTA file.
-   * Execute the script `data_processing.py`
-  ```python
- data_processing.py
-```
+
 ### Installation
 Before running the script, ensure you have Python 3 and Biopython installed. You can install Biopython using pip:
    ``` python
 pip install biopython
 ```
-**3. analyse the data**
- * Execute the script `data_analysis.py`
+### Functionality
+1.  **find_longest_repeated_subsequence(sequence):**
+This function identifies the longest sub-sequence that repeats itself within the DNA sequence.
+It creates suffixes of the sequence, sorts them, and then finds the longest common prefix between consecutive suffixes.
+
+2.  **find_longest_palindromic_subsequence(sequence):**
+This function finds the longest palindromic sub-sequence.
+It uses an "expand around center" technique to identify palindromes efficiently.
+
+3.  **parse_sequence(file_path):**
+This function reads and parses the DNA sequence from a FASTA file using Biopython's SeqIO module.
+
+4.  **main():**
+This is the entry point of the script. It handles command-line arguments, reads the sequence from the input file, and performs the specified analyses.
+
+## Usage
+Run the script from the command line, specifying the path to your FASTA file and the desired analyses.
+
+ ### Example Command:
   ```python
- data_analysis.py
+ python analyze.py path/to/your/file.fasta --longest --palindrome
 ```
    * The script will yield a figure with 2 panels: Kaplan-Meier plot and barplot of the enriched pathwats
    * Detailed explanations and requirements can be found in [`data_analysis_explained.md`](https://github.com/roisiegelman/Project/blob/main/data_analysis_explained.md)
