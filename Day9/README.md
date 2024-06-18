@@ -51,7 +51,5 @@ Sequence loaded successfully.
 Longest repeated sub-sequence: ACACCACAGGCTGA
 Longest palindromic sub-sequence: GTCAATG
 ```
-
-
-
-This project was originally implemented as part of the [Python programming course](https://github.com/szabgab/wis-python-course-2024-04) at the [Weizmann Institute of Science](https://www.weizmann.ac.il/) taught by [Gabor Szabo](https://szabgab.com/).
+### Summary
+This script provides a flexible and efficient way to analyze DNA sequences for specific features. Users can choose to analyze for the longest repeated sub-sequence, the longest palindromic sub-sequence, or both, by using the appropriate command-line arguments. The script ensures robust handling of input files and sequences through Biopython, making it suitable for various DNA sequence analysis tasks.
