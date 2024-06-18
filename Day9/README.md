@@ -38,10 +38,13 @@ Run the script from the command line, specifying the path to your FASTA file and
 
  ### Example Command:
   ```python
- python analyze.py path/to/your/file.fasta --longest --palindrome
+ python analyze.py sequence.fasta --longest --palindrome
 ```
-   * The script will yield a figure with 2 panels: Kaplan-Meier plot and barplot of the enriched pathwats
-   * Detailed explanations and requirements can be found in [`data_analysis_explained.md`](https://github.com/roisiegelman/Project/blob/main/data_analysis_explained.md)
+### Arguments:
+* `fasta_file`: The path to the input file in FASTA format.
+* `--longest`: (Optional) Perform analysis to find the longest repeated sub-sequence.
+* `--palindrome`: (Optional) Perform analysis to find the longest palindromic sub-sequence.
+
    * Testing the script:
    ```python
 pytest test_data_analysis.py
